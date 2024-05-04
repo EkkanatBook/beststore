@@ -1,4 +1,4 @@
-package com.example.beststore.models;
+package com.example.beststore.dto;
 
 import jakarta.validation.constraints.*;
 import org.springframework.web.multipart.MultipartFile;
