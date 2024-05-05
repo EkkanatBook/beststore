@@ -1,6 +1,7 @@
 package com.example.beststore.controllers;
 
 import com.example.beststore.dto.CustomerDto;
+import com.example.beststore.dto.MenuDto;
 import com.example.beststore.models.Customer;
 import com.example.beststore.models.Menu;
 import com.example.beststore.services.CustomerRepository;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -27,6 +29,13 @@ public class CustomerController {
         List<Menu> menus = menuRepository.findAll();
         model.addAttribute("menus", menus);
         return "customers/index";
+    }
+
+    @GetMapping("/orderList")
+    public String showOrderList(Model model){
+        List<Customer> customers = customerRepository.findAll();
+        model.addAttribute("customers", customers);
+        return "customers/orderList";
     }
 
     @GetMapping("/confirmOrder")
@@ -54,19 +63,25 @@ public class CustomerController {
 
     @PostMapping("/confirmOrder")
     public String confirmOrder(
-            @ModelAttribute("customerDto") CustomerDto customerDto
+            Model model,
+            @RequestParam int id,
+            @ModelAttribute MenuDto menuDto,
+            @ModelAttribute CustomerDto customerDto
     ){
-
-        // สร้างอ็อบเจกต์ Customer และกำหนดค่า
+        Date createdAt = new Date();
         Customer customer = new Customer();
+        Menu menu = menuRepository.findById(id).get();
+        model.addAttribute("menu", menu);
+
+        customer.setMenuId(menu.getId());
+        customer.setMenuName(menu.getName());
+        customer.setMenuPrice(menu.getPrice());
         customer.setName(customerDto.getName());
         customer.setPhoneNumber(customerDto.getPhoneNumber());
+        customer.setCreatedAt(createdAt);
+
 
         customerRepository.save(customer);
-
         return "redirect:/customers";
     }
-
-
-
 }
