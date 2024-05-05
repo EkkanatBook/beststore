@@ -7,13 +7,19 @@ import com.example.beststore.models.Menu;
 import com.example.beststore.services.CustomerRepository;
 import com.example.beststore.services.MenuRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/customers")
@@ -83,5 +89,37 @@ public class CustomerController {
 
         customerRepository.save(customer);
         return "redirect:/customers";
+    }
+
+    @GetMapping("/updateStatus")
+    public String updateStatus(
+            @RequestParam int id
+    ) {
+        Customer customer = customerRepository.findById(id).get();
+
+        if (customer.getStatus().equals("รอดำเนินงาน")){
+            customer.setStatus("กำลังดำเนิดงาน");
+        } else if (customer.getStatus().equals("กำลังดำเนิดงาน")) {
+            customer.setStatus("อาหารเสร็จแล้ว");
+        } else if (customer.getStatus().equals("อาหารเสร็จแล้ว")) {
+            customer.setStatus("รับอาหารเรียบร้อย");
+        }
+
+        customerRepository.save(customer);
+        return "redirect:/customers/orderList";
+    }
+
+    @GetMapping("/delete")
+    public String deleteMenu(
+            @RequestParam int id
+    ){
+        try {
+            Customer customer = customerRepository.findById(id).get();
+
+            customerRepository.delete(customer);
+        } catch (Exception ex){
+            System.out.println("Exception: "+ ex.getMessage());
+        }
+        return "redirect:/customers/orderList";
     }
 }

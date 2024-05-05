@@ -15,6 +15,7 @@ public class CustomerDto {
     private int menuId;
     private String menuName;
     private Double menuPrice;
+    private String status;
 
     public String getName() {
         return name;
@@ -54,5 +55,13 @@ public class CustomerDto {
 
     public void setMenuPrice(Double menuPrice) {
         this.menuPrice = menuPrice;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

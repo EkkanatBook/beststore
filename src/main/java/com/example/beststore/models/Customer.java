@@ -17,6 +17,10 @@ public class Customer {
     private int menuId;
     private String menuName;
     private double menuPrice;
+    private String status;
+    public Customer() {
+        this.status = "รอดำเนินงาน";
+    }
 
 
     public int getId() {
@@ -73,5 +77,13 @@ public class Customer {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
