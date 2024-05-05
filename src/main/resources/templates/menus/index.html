@@ -13,18 +13,19 @@
 <body>
 
 <div class="container">
-    <h1 class="text-center my-4">Menu List</h1>
-    <a class="btn btn-primary" href="/menus/createMenu">Create Product</a>
+    <h1 class="text-center my-4">เมนู</h1>
+    <a class="btn btn-primary me-3" href="/menus/createMenu">เพิ่มเมนู</a>
+    <a class="btn btn-primary" href="/stores/index">รายการสั่งซื้อ</a>
 
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Created At</th>
-            <th>Action</th>
+            <th>ลำดับ</th>
+            <th>ชื่อ</th>
+            <th>ราคา</th>
+            <th>รูป</th>
+            <th>วันที่</th>
+            <th>โย่ว</th>
         </tr>
         </thead>
         <tbody>
@@ -39,10 +40,10 @@
             <td th:text="${menu.createdAt.toString().substring(0, 10)}"></td>
             <td style="white-space: nowrap">
                 <a class="btn btn-primary btn-sm"
-                   th:href="@{/menus/edit(id=${menu.id})}">Edit</a>
+                   th:href="@{/menus/edit(id=${menu.id})}">แก้ไข</a>
                 <a class="btn btn-danger btn-sm"
                    th:href="@{/menus/delete(id=${menu.id})}"
-                   onclick="return confirm('Are you sure?')">Delete</a>
+                   onclick="return confirm('Are you sure?')">ลบ</a>
             </td>
         </tr>
         </tbody>
