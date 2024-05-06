@@ -38,10 +38,10 @@
             <td th:text="${customer.name}"></td>
             <td th:text="${customer.phoneNumber}"></td>
             <td th:text="${customer.createdAt.toString().substring(5, 16)}"></td>
-            <td th:text="${customer.status}"></td>
+            <td th:class="${customer.status == 'รอการยืนยันจากร้านค้า'} ? 'table-danger' : 'table-success'" th:text="${customer.status}"></td>
 <!--            <td style="white-space: nowrap">-->
 <!--                <a class="btn btn-danger btn-sm"-->
-<!--                   th:href="@{/customers/cancelOrder(id=${customer.id})}"-->
+<!--                   th:hre   f="@{/customers/cancelOrder(id=${customer.id})}"-->
 <!--                   onclick="return confirm('Are you sure?')">ยกเลิก</a>-->
 <!--            </td>-->
             <td>069-104-5470</td>
