@@ -13,16 +13,16 @@
 <body>
 
 <div class="container">
-    <h1 class="text-center my-4">Welcome</h1>
+    <h1 class="text-center my-4">ยินดีต้อนรับ</h1>
     <a class="btn btn-primary me-3" href="/customers/orderStatus">รายการที่สั่ง</a>
 
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
-            <th>Price</th>
-            <th>Image</th>
-            <th>Action</th>
+            <th>ชื่อ</th>
+            <th>ราคา</th>
+            <th>ภาพ</th>
+            <th>คำสั่ง</th>
         </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
                 <td>
                     <a class="btn btn-success"
                     th:href="@{/customers/confirmOrder(id=${menu.id})}"
-                    >Buy</a>
+                    >ซื้อ</a>
                 </td>
             </tr>
         </tbody>

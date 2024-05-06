@@ -19,7 +19,7 @@ public class Customer {
     private double menuPrice;
     private String status;
     public Customer() {
-        this.status = "รอดำเนินงาน";
+        this.status = "รอการยืนยันจากร้านค้า";
     }
 
 
