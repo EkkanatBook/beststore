@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class MenuDto {
 
-    @NotEmpty(message = "The name is required")
+    @NotEmpty(message = "กรุณาใส่ชื่อเมนูอาหาร")
     private String name;
     @Min(0)
     private double price;

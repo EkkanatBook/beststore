@@ -50,7 +50,7 @@ public class MenuController {
             BindingResult result
     ){
         if (menuDto.getImageFile().isEmpty()){
-            result.addError(new FieldError("menuDto", "imageFile", "The image file is required"));
+            result.addError(new FieldError("menuDto", "imageFile", "กรุณาใส่รูปภาพอาหาร"));
         }
 
         if (result.hasErrors()) {
