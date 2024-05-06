@@ -1,9 +1,7 @@
 package com.example.beststore.controllers;
 
 import com.example.beststore.dto.MenuDto;
-import com.example.beststore.dto.ProductDto;
 import com.example.beststore.models.Menu;
-import com.example.beststore.models.Product;
 import com.example.beststore.services.MenuRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
