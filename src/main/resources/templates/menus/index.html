@@ -12,10 +12,27 @@
 </head>
 <body>
 
-<div class="container">
-    <h1 class="text-center my-4">เมนู</h1>
-    <a class="btn btn-primary me-3" href="/menus/createMenu">เพิ่มเมนู</a>
-    <a class="btn btn-primary" href="customers/orderList">รายการสั่งซื้อ</a>
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand fs-3" href="/">
+                <img src="/images/UTCC_SubMain-1.png" alt=""  height="70" class="d-inline-block align-text-top">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" href="/menus">เมนูอาหาร</a>
+                    <a class="nav-link" href="/menus/createMenu">เพิ่มเมนู</a>
+                    <a class="nav-link " href="/customers/orderList">รายการสั่งซื้อ</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<div class="container my-3">
 
     <table class="table">
         <thead>
