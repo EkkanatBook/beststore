@@ -36,7 +36,7 @@
             <td th:text="${customer.menuPrice} + ' บาท'"></td>
             <td th:text="${customer.name}"></td>
             <td th:text="${customer.phoneNumber}"></td>
-            <td th:text="${customer.createdAt.toString().substring(0, 10)}"></td>
+            <td th:text="${customer.createdAt.toString().substring(5, 16)}"></td>
             <td th:text="${customer.status}"></td>
             <td style="white-space: nowrap">
                 <a class="btn btn-success btn-sm"
