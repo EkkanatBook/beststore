@@ -100,9 +100,9 @@ public class CustomerController {
     ) {
         Customer customer = customerRepository.findById(id).get();
 
-        if (customer.getStatus().equals("รอดำเนินงาน")){
-            customer.setStatus("กำลังดำเนิดงาน");
-        } else if (customer.getStatus().equals("กำลังดำเนิดงาน")) {
+        if (customer.getStatus().equals("รอการยืนยันจากร้านค้า")){
+            customer.setStatus("รอแม่ค้าทำอาหาร");
+        } else if (customer.getStatus().equals("รอแม่ค้าทำอาหาร")) {
             customer.setStatus("อาหารเสร็จแล้ว");
         } else if (customer.getStatus().equals("อาหารเสร็จแล้ว")) {
             customer.setStatus("รับอาหารเรียบร้อย");
