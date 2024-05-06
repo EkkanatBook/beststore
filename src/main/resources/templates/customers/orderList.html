@@ -16,7 +16,7 @@
     <h1 class="text-center my-4">รายการอาหาร</h1>
     <a class="btn btn-primary me-3" href="/menus">เมนู</a>
 
-    <table class="table">
+    <table class="table table-striped table-hover">
         <thead>
         <tr>
             <th>หมายเลข ID</th>
@@ -37,7 +37,7 @@
             <td th:text="${customer.name}"></td>
             <td th:text="${customer.phoneNumber}"></td>
             <td th:text="${customer.createdAt.toString().substring(5, 16)}"></td>
-            <td th:text="${customer.status}"></td>
+            <td th:class="${customer.status == 'รอการยืนยันจากร้านค้า'} ? 'table-danger' : 'table-success'" th:text="${customer.status}"></td>
             <td style="white-space: nowrap">
                 <a class="btn btn-success btn-sm"
                    th:if="${customer.status ne 'รับออเดอร์แล้ว'}"
