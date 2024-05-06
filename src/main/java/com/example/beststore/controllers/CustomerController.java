@@ -9,9 +9,11 @@ import com.example.beststore.services.MenuRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.*;
 
 import java.nio.file.Files;
@@ -32,14 +34,14 @@ public class CustomerController {
 
     @GetMapping({"","/"})
     public String showMenuList(Model model){
-        List<Menu> menus = menuRepository.findAll();
+        List<Menu> menus = menuRepository.findAll(Sort.by(Sort.Direction.DESC,"id"));
         model.addAttribute("menus", menus);
         return "customers/index";
     }
 
     @GetMapping("/orderList")
     public String showOrderList(Model model){
-        List<Customer> customers = customerRepository.findAll();
+        List<Customer> customers = customerRepository.findAll(Sort.by(Sort.Direction.ASC,"createdAt"));
         model.addAttribute("customers", customers);
         return "customers/orderList";
     }
@@ -52,7 +54,8 @@ public class CustomerController {
 
         try {
 
-            Menu menu = menuRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Menu not found with id: " + id));
+            Menu menu = menuRepository.findById(id).
+                    orElseThrow(() -> new EntityNotFoundException("Menu not found with id: " + id));
             model.addAttribute("menu", menu);
 
             CustomerDto customerDto = new CustomerDto();
@@ -110,7 +113,7 @@ public class CustomerController {
     }
 
     @GetMapping("/delete")
-    public String deleteMenu(
+    public String deleteOrder(
             @RequestParam int id
     ){
         try {
@@ -121,5 +124,28 @@ public class CustomerController {
             System.out.println("Exception: "+ ex.getMessage());
         }
         return "redirect:/customers/orderList";
+    }
+
+    @GetMapping("/orderStatus")
+    public String showCustomerOrder(Model model){
+        List<Customer> customers = customerRepository.findAll();
+        CustomerDto customerDto = new CustomerDto();
+        model.addAttribute("customers", customers);
+        model.addAttribute("customerDto", customerDto);
+        return "customers/OrderStatus";
+    }
+
+    @GetMapping("/cancelOrder")
+    public String cancelOrder(
+            @RequestParam int id
+    ){
+        try {
+            Customer customer = customerRepository.findById(id).get();
+
+            customerRepository.delete(customer);
+        } catch (Exception e){
+            System.out.println("Exception"+ e.getMessage());
+        }
+        return "redirect:/customers/orderStatus";
     }
 }

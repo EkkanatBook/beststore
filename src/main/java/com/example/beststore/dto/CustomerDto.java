@@ -3,6 +3,7 @@ package com.example.beststore.dto;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 
 public class CustomerDto {
 
@@ -10,6 +11,7 @@ public class CustomerDto {
     private String name;
 
     @NotEmpty(message = "The Number is required")
+    @Size(min = 10, max = 10)
     private String phoneNumber;
 
     private int menuId;

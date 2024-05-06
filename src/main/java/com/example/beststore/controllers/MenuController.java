@@ -7,6 +7,7 @@ import com.example.beststore.models.Product;
 import com.example.beststore.services.MenuRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,7 +32,7 @@ public class MenuController {
 
     @GetMapping({"","/"})
     public String showMenuList(Model model){
-        List<Menu> menus = repo.findAll();
+        List<Menu> menus = repo.findAll(Sort.by(Sort.Direction.DESC,"id"));
         model.addAttribute("menus", menus);
         return "menus/index";
     }

@@ -35,7 +35,7 @@
             <td th:text="${menu.price} + ' บาท'"></td>
             <td>
                 <img th:src="@{'/images/' + ${menu.imageFileName}}"
-                     alt="..." width="100">
+                     alt="..." width="150">
             </td>
             <td th:text="${menu.createdAt.toString().substring(0, 10)}"></td>
             <td style="white-space: nowrap">
